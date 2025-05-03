@@ -1,87 +1,121 @@
-const score = JSON.parse(
-  localStorage.getItem("score") || '{"player": 0, "computer": 0}'
-);
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Rock Paer Scissors</title>
+    <style>
+      body {
+        text-align: center;
+        font-family: sans-serif;
+        background-color: #f0f0f0;
+      }
+      button {
+        background-color: transparent;
+        border: solid 1px #000;
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        cursor: pointer;
+        padding: 10px;
+        vertical-align: top;
+      }
 
-updateScoreElement();
+      img {
+        display: fit;
+        height: 80px;
+        width: 80px;
+        border-radius: 50%;
+      }
 
-let compResult;
-let winner;
-let playerResult;
+      .js-reset {
+        font-size: 20px;
+        margin-top: 20px;
+        border-radius: 10px;
+        height: 50px;
+        width: 200px;
+        text-align: center;
+      }
 
-function compResponse() {
-  randomNumber = Math.random();
-  if (randomNumber >= 0 && randomNumber < 1 / 3) {
-    computer = "rock";
-  } else if (randomNumber >= 1 / 3 && randomNumber < 2 / 3) {
-    computer = "paper";
-  } else {
-    computer = "scissors";
-  }
-  return computer;
-}
+      button:active {
+        background-color: #cfcfcf;
+      }
 
-function determineWinner(player, computer) {
-  if (computer === player) {
-    winner = "";
-  } else if (
-    (computer === "rock" && player === "scissors") ||
-    (computer === "paper" && player === "rock") ||
-    (computer === "scissors" && player === "paper")
-  ) {
-    winner = "Computer";
-  } else {
-    winner = "Player";
-  }
+      .js-input {
+        margin-top: 20px;
+        height: 40px;
+        width: 300px;
+        border-radius: 10px;
+        text-align: left;
+        display: block;
+        margin: 10px auto;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Rock Paper Scissors</p>
 
-  localStorage.setItem("score", JSON.stringify(score));
+    <button
+      id="player-rock"
+      onclick="
+      playerResult = 'rock';
+      compResult = compResponse();
+      winner = determineWinner(playerResult, compResult);
+      revealResults(playerResult, compResult, winner);
+      confetti('player-rock');
+      "
+    >
+      <img src="images/rock.png" alt="rock" />
+    </button>
 
-  updateScoreElement();
+    <button
+      id="player-paper"
+      onclick="
+      playerResult = 'paper';
+      compResult = compResponse();
+      winner = determineWinner(playerResult, compResult);
+      revealResults(playerResult, compResult, winner);
+      confetti('player-paper');
+      "
+    >
+      <img src="images/paper.png" alt="paper" />
+    </button>
 
-  return winner;
-}
+    <button
+      id="player-scissors"
+      onclick="
+      playerResult = 'scissors';
+      compResult = compResponse();
+      winner = determineWinner(playerResult, compResult);
+      revealResults(playerResult, compResult, winner);
+      confetti('player-scissors');
+      "
+    >
+      <img src="images/scissors.png" alt="scissors" />
+    </button>
+    <input
+      type="text"
+      class="js-input"
+      id="celebrationInput"
+      placeholder="Enter letters, numbers or emojis"
+    />
+    <p class="js-result"></p>
+    <p class="js-score"></p>
 
-function updateScoreElement() {
-  document.querySelector(
-    ".js-score"
-  ).innerHTML = `Score: Player ${score.player}; Computer ${score.computer}`;
-}
+    <button
+      class="js-reset"
+      onclick="
+      score.player = 0;
+      score.computer = 0;
+      localStorage.setItem('score', JSON.stringify(score));
+      document.querySelector('.js-score').innerHTML = `Score: Player ${score.player}; Computer ${score.computer}`;
 
-function revealResults(player, computer, winner) {
-  if (winner !== "") {
-    document.querySelector(
-      ".js-result"
-    ).innerHTML = `You played ${player} and computer played ${computer}, so ${winner} is the winner`;
-  } else {
-    document.querySelector(
-      ".js-result"
-    ).innerHTML = `You played ${player} and computer played ${computer}, so it's a draw...`;
-  }
+      "
+    >
+      Reset score
+    </button>
 
-  if (winner === "Player") {
-    score.player++;
-  } else if (winner === "Computer") {
-    score.computer++;
-  }
-}
-
-function confetti(playerMove) {
-  const celebrationPreferences =
-    document.getElementById("celebrationInput").value;
-  const button = document.querySelector(playerMove);
-  const jsConfetti = new JSConfetti();
-  const celebrations = celebrationPreferences.split("");
-
-  console.log(celebrationPreferences);
-  console.log(celebrations);
-  console.log(winner);
-  if (winner === "Player") {
-    console.log("Player wins");
-    if (celebrationPreferences.length === 0) {
-      jsConfetti.addConfetti();
-    } else {
-      jsConfetti.addConfetti({
-        emojis: celebrations,
-      });
-    }
-  }
-}
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
