@@ -1,0 +1,103 @@
+body {
+  text-align: center;
+  font-family: sans-serif;
+  background-color: rgb(119, 131, 158);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-direction: row;
+  min-height: 40vh;
+}
+
+.mid-container {
+  display: flex;
+  flex: 4;
+  order: 2;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 40%;
+}
+
+h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 40px;
+  color: #333;
+}
+
+.js {
+  display: flex;
+  flex-direction: row;
+}
+
+button {
+  background-color: rgb(151, 166, 200);
+  border: solid 1px #000;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  cursor: pointer;
+  vertical-align: top;
+}
+
+img {
+  display: fit;
+  height: 80%;
+  width: 80%;
+  border-radius: 30%;
+}
+
+.js-reset {
+  font-size: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+  height: 50px;
+  width: 200px;
+  text-align: center;
+}
+
+button:active {
+  background-color: rgb(119, 131, 158);
+}
+
+.js-input {
+  margin-top: 20px;
+  height: 40px;
+  width: 300px;
+  border-radius: 10px;
+  text-align: left;
+  display: block;
+  margin: 10px auto;
+  font-size: 20px;
+  border: solid 1.5px #000;
+}
+
+.character-box {
+  display: grid;
+  grid-template-rows: 1fr 2fr;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background-color: transparent;
+  vertical-align: top;
+  flex: 3;
+}
+
+.player-display {
+  order: 1;
+}
+
+.character-gif {
+  object-fit: cover;
+}
+
+.computer-display {
+  order: 3;
+}
+
+.text-bubble {
+  flex: 0.2;
+}
