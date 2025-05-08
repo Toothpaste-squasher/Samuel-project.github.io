@@ -3,118 +3,109 @@
   <head>
     <meta charset="UTF-8" />
     <title>Rock Paer Scissors</title>
-    <style>
-      body {
-        text-align: center;
-        font-family: sans-serif;
-        background-color: #f0f0f0;
-      }
-      button {
-        background-color: transparent;
-        border: solid 1px #000;
-        height: 100px;
-        width: 100px;
-        border-radius: 50%;
-        cursor: pointer;
-        padding: 10px;
-        vertical-align: top;
-      }
-
-      img {
-        display: fit;
-        height: 80px;
-        width: 80px;
-        border-radius: 50%;
-      }
-
-      .js-reset {
-        font-size: 20px;
-        margin-top: 20px;
-        border-radius: 10px;
-        height: 50px;
-        width: 200px;
-        text-align: center;
-      }
-
-      button:active {
-        background-color: #cfcfcf;
-      }
-
-      .js-input {
-        margin-top: 20px;
-        height: 40px;
-        width: 300px;
-        border-radius: 10px;
-        text-align: left;
-        display: block;
-        margin: 10px auto;
-        font-size: 20px;
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <p>Rock Paper Scissors</p>
+    <div class="container">
+      <div class="mid-container">
+        <h1>Rock Paper Scissors</h1>
 
-    <button
-      id="player-rock"
-      onclick="
-      playerResult = 'rock';
-      compResult = compResponse();
-      winner = determineWinner(playerResult, compResult);
-      revealResults(playerResult, compResult, winner);
-      confetti('player-rock');
-      "
-    >
-      <img src="images/rock.png" alt="rock" />
-    </button>
+        <div class="js">
+          <button
+            id="player-rock"
+            onclick="
+            playerResult = 'rock';
+            compResult = compResponse();
+            winner = determineWinner(playerResult, compResult);
+            revealResults(playerResult, compResult, winner);
+            confetti('player-rock');
+            "
+          >
+            <img src="images/rock.png" alt="rock" />
+          </button>
 
-    <button
-      id="player-paper"
-      onclick="
-      playerResult = 'paper';
-      compResult = compResponse();
-      winner = determineWinner(playerResult, compResult);
-      revealResults(playerResult, compResult, winner);
-      confetti('player-paper');
-      "
-    >
-      <img src="images/paper.png" alt="paper" />
-    </button>
+          <button
+            id="player-paper"
+            onclick="
+            playerResult = 'paper';
+            compResult = compResponse();
+            winner = determineWinner(playerResult, compResult);
+            revealResults(playerResult, compResult, winner);
+            confetti('player-paper');
+            "
+          >
+            <img src="images/paper.png" alt="paper" />
+          </button>
 
-    <button
-      id="player-scissors"
-      onclick="
-      playerResult = 'scissors';
-      compResult = compResponse();
-      winner = determineWinner(playerResult, compResult);
-      revealResults(playerResult, compResult, winner);
-      confetti('player-scissors');
-      "
-    >
-      <img src="images/scissors.png" alt="scissors" />
-    </button>
-    <input
-      type="text"
-      class="js-input"
-      id="celebrationInput"
-      placeholder="Enter letters, numbers or emojis"
-    />
-    <p class="js-result"></p>
-    <p class="js-score"></p>
+          <button
+            id="player-scissors"
+            onclick="
+            playerResult = 'scissors';
+            compResult = compResponse();
+            winner = determineWinner(playerResult, compResult);
+            revealResults(playerResult, compResult, winner);
+            confetti('player-scissors');
+            "
+          >
+            <img src="images/scissors.png" alt="scissors" />
+          </button>
+        </div>
+        <input
+          type="text"
+          class="js-input"
+          id="celebrationInput"
+          placeholder="Enter letters, numbers or emojis"
+        />
+        <p class="js-result"></p>
+        <p class="js-score"></p>
 
-    <button
-      class="js-reset"
-      onclick="
-      score.player = 0;
-      score.computer = 0;
-      localStorage.setItem('score', JSON.stringify(score));
-      document.querySelector('.js-score').innerHTML = `Score: Player ${score.player}; Computer ${score.computer}`;
+        <button
+          class="js-reset"
+          onclick="
+          score.player = 0;
+          score.computer = 0;
+          localStorage.setItem('score', JSON.stringify(score));
+          document.querySelector('.js-score').innerHTML = `Score: Player ${score.player}; Computer ${score.computer}`;
+          "
+        >
+          Reset score
+        </button>
+      </div>
 
-      "
-    >
-      Reset score
-    </button>
+      <div class="player-display character-box">
+        <div>
+          <img
+            src="images/convo-bubbles/Subject 6.PNG"
+            alt="convo-bubble"
+            class="text-bubble player-bubble"
+          />
+          <p></p>
+        </div>
+        <img
+          src="images/player.gif"
+          alt="player"
+          style="height: 100%; width: 100%"
+          class="player-character character-gif"
+        />
+      </div>
 
+      <div class="computer-display character-box">
+        <div>
+          <img
+            src="images/convo-bubbles/Subject 6.PNG"
+            alt="convo-bubble"
+            class="text-bubble comp-bubble"
+          />
+          <p></p>
+        </div>
+        <img
+          src="images/robot.gif"
+          alt="robot"
+          style="height: 100%; width: 100%"
+          class="robot-character character-gif"
+        />
+      </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
     <script src="script.js"></script>
   </body>
