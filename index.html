@@ -13,12 +13,15 @@
         <div class="js">
           <button
             id="player-rock"
+            class="play"
             onclick="
             playerResult = 'rock';
             compResult = compResponse();
             winner = determineWinner(playerResult, compResult);
             revealResults(playerResult, compResult, winner);
             confetti('player-rock');
+            changeTextBubble('.comp-bubble');
+            changeTextBubble('.player-bubble');
             "
           >
             <img src="images/rock.png" alt="rock" />
@@ -26,12 +29,15 @@
 
           <button
             id="player-paper"
+            class="play"
             onclick="
             playerResult = 'paper';
             compResult = compResponse();
             winner = determineWinner(playerResult, compResult);
             revealResults(playerResult, compResult, winner);
             confetti('player-paper');
+            changeTextBubble('.comp-bubble');
+            changeTextBubble('.player-bubble');
             "
           >
             <img src="images/paper.png" alt="paper" />
@@ -39,12 +45,15 @@
 
           <button
             id="player-scissors"
+            class="play"
             onclick="
             playerResult = 'scissors';
             compResult = compResponse();
             winner = determineWinner(playerResult, compResult);
             revealResults(playerResult, compResult, winner);
             confetti('player-scissors');
+            changeTextBubble('.comp-bubble');
+            changeTextBubble('.player-bubble');
             "
           >
             <img src="images/scissors.png" alt="scissors" />
@@ -73,13 +82,13 @@
       </div>
 
       <div class="player-display character-box">
-        <div>
+        <div class="text-bubble">
           <img
             src="images/convo-bubbles/Subject 6.PNG"
             alt="convo-bubble"
-            class="text-bubble player-bubble"
+            class="player-bubble"
           />
-          <p></p>
+          <p class="dialogue playerDia">Let's goo</p>
         </div>
         <img
           src="images/player.gif"
@@ -90,20 +99,36 @@
       </div>
 
       <div class="computer-display character-box">
-        <div>
+        <div class="text-bubble">
           <img
             src="images/convo-bubbles/Subject 6.PNG"
             alt="convo-bubble"
-            class="text-bubble comp-bubble"
+            class="comp-bubble"
           />
-          <p></p>
+          <p class="dialogue compDia">Let's play</p>
         </div>
-        <img
-          src="images/robot.gif"
-          alt="robot"
-          style="height: 100%; width: 100%"
-          class="robot-character character-gif"
-        />
+        <div>
+          <img
+            src="images/robot.gif"
+            alt="robot"
+            style="height: 100%; width: 100%"
+            class="robot-character character-gif"
+          />
+          <button
+            class="askToStop"
+            onclick="
+              if (document.querySelector('.askToStop').innerHTML.trim() === `STOP dancing you Strabid`) {
+                document.querySelector('.robot-character').src = 'images/robot.png';
+                document.querySelector('.askToStop').innerHTML = 'Fine you can continue';
+              } else if (document.querySelector('.askToStop').innerHTML.trim() === 'Fine you can continue') {
+                document.querySelector('.robot-character').src = 'images/robot.gif';
+                document.querySelector('.askToStop').innerHTML = 'STOP dancing you Strabid';
+              }
+            "
+          >
+            STOP dancing you Strabid
+          </button>
+        </div>
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
