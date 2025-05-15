@@ -38,7 +38,6 @@ button {
   border: solid 1px #000;
   height: 100px;
   width: 100px;
-  border-radius: 50%;
   cursor: pointer;
   vertical-align: top;
 }
@@ -47,7 +46,6 @@ img {
   display: fit;
   height: 80%;
   width: 80%;
-  border-radius: 30%;
 }
 
 .js-reset {
@@ -61,6 +59,11 @@ img {
 
 button:active {
   background-color: rgb(119, 131, 158);
+}
+
+.play {
+  margin: 5px;
+  border-radius: 50%;
 }
 
 .js-input {
@@ -84,10 +87,26 @@ button:active {
   background-color: transparent;
   vertical-align: top;
   flex: 3;
+  height: 600px;
 }
 
 .player-display {
   order: 1;
+}
+
+.comp-bubble {
+  transform: scalex(-1);
+}
+
+.dialogue {
+  font-size: calc(1.2vh + 2.2vw);
+  position: absolute;
+  top: 15%;
+  left: 32%;
+}
+
+.playerDia {
+  left: 28%;
 }
 
 .character-gif {
@@ -100,4 +119,18 @@ button:active {
 
 .text-bubble {
   flex: 0.2;
+  position: relative;
+  margin-top: 20px;
+  height: 37vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.askToStop {
+  font-size: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+  height: 50px;
+  width: 200px;
+  text-align: center;
 }
