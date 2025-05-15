@@ -85,3 +85,35 @@ function confetti(playerMove) {
     }
   }
 }
+
+function changeTextBubble(bubbleClass) {
+  numOfBubbles = 12;
+  const ranBubNum = Math.floor(Math.random() * numOfBubbles) + 1;
+  bubbleName = `Subject ${ranBubNum}.PNG`;
+  document.querySelector(
+    bubbleClass
+  ).src = `images/convo-bubbles/${bubbleName}`;
+  console.log(bubbleName);
+}
+
+compWinDialogue = [
+  "I am too good",
+  "I am unbeatable",
+  "I am the champion",
+  "bow to the champion (:",
+];
+
+playerWinDialogue = ["I am the best", "U suck", "LOL", "Get better"];
+
+compLostDialogue = [
+  "No way, again",
+  "Shut up",
+  "Watch me win next time",
+  "You got lucky",
+];
+
+playerLostDialogue = ["...."];
+
+function changeDialogue() {
+  console.log(winner);
+}
