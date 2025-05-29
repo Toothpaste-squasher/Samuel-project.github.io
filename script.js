@@ -41,20 +41,36 @@ function determineWinner(player, computer) {
 }
 
 function updateScoreElement() {
-  document.querySelector(
-    ".js-score"
-  ).innerHTML = `Score: Player ${score.player}; Computer ${score.computer}`;
+  if (score.player > score.computer) {
+    document.querySelector(
+      ".js-score"
+    ).innerHTML = `Player<div class='js-player-score winning'>${score.player}</div>Computer<div class='js-computer-score losing'>${score.computer}</div>`;
+  } else if (score.computer > score.player) {
+    document.querySelector(
+      ".js-score"
+    ).innerHTML = `Player<div class='js-player-score losing'>${score.player}</div>Computer<div class='js-computer-score winning'>${score.computer}</div>`;
+  } else {
+    document.querySelector(
+      ".js-score"
+    ).innerHTML = `Player<div class='js-player-score'>${score.player}</div>Computer<div class='js-computer-score'>${score.computer}</div>`;
+  }
 }
 
 function revealResults(player, computer, winner) {
   if (winner !== "") {
-    document.querySelector(
-      ".js-result"
-    ).innerHTML = `You played ${player} and computer played ${computer}, so ${winner} is the winner`;
+    if (winner === "Player") {
+      document.querySelector(
+        ".js-result"
+      ).innerHTML = `<img class="playerPlayed winner" src="images/${player}.png" alt="${player}"><img class="computerPlayed loser" src="images/${computer}.png" alt="${computer}">`;
+    } else {
+      document.querySelector(
+        ".js-result"
+      ).innerHTML = `<img class="playerPlayed loser" src="images/${player}.png" alt="${player}"><img class="computerPlayed winner" src="images/${computer}.png" alt="${computer}">`;
+    }
   } else {
     document.querySelector(
       ".js-result"
-    ).innerHTML = `You played ${player} and computer played ${computer}, so it's a draw...`;
+    ).innerHTML = `<img class="playerPlayed draw" src="images/${player}.png" alt="${player}"><img class="computerPlayed draw" src="images/${computer}.png" alt="${computer}">`;
   }
 
   if (winner === "Player") {
@@ -62,6 +78,28 @@ function revealResults(player, computer, winner) {
   } else if (winner === "Computer") {
     score.computer++;
   }
+}
+
+let isAutoPlaying = false;
+let autoPlayInterval;
+function autoPlay() {
+  autoPlayInterval = setInterval(function () {
+    const player = compResponse();
+    const computer = compResponse();
+    determineWinner(player, computer);
+    revealResults(player, computer, winner);
+    confetti(".js-player");
+    changeTextBubble(".js-player-bubble");
+  }, 1000);
+}
+
+function playGame(playerResult) {
+  compResult = compResponse();
+  winner = determineWinner(playerResult, compResult);
+  revealResults(playerResult, compResult, winner);
+  confetti("player-rock");
+  changeTextBubble(".comp-bubble");
+  changeTextBubble(".player-bubble");
 }
 
 function confetti(playerMove) {
