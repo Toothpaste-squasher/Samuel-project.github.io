@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <title>Rock Paer Scissors</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="container">
@@ -15,13 +21,7 @@
             id="player-rock"
             class="play"
             onclick="
-            playerResult = 'rock';
-            compResult = compResponse();
-            winner = determineWinner(playerResult, compResult);
-            revealResults(playerResult, compResult, winner);
-            confetti('player-rock');
-            changeTextBubble('.comp-bubble');
-            changeTextBubble('.player-bubble');
+            playGame('rock');
             "
           >
             <img src="images/rock.png" alt="rock" />
@@ -31,13 +31,7 @@
             id="player-paper"
             class="play"
             onclick="
-            playerResult = 'paper';
-            compResult = compResponse();
-            winner = determineWinner(playerResult, compResult);
-            revealResults(playerResult, compResult, winner);
-            confetti('player-paper');
-            changeTextBubble('.comp-bubble');
-            changeTextBubble('.player-bubble');
+            playGame('paper');
             "
           >
             <img src="images/paper.png" alt="paper" />
@@ -47,13 +41,7 @@
             id="player-scissors"
             class="play"
             onclick="
-            playerResult = 'scissors';
-            compResult = compResponse();
-            winner = determineWinner(playerResult, compResult);
-            revealResults(playerResult, compResult, winner);
-            confetti('player-scissors');
-            changeTextBubble('.comp-bubble');
-            changeTextBubble('.player-bubble');
+            playGame('scissors');
             "
           >
             <img src="images/scissors.png" alt="scissors" />
@@ -65,19 +53,35 @@
           id="celebrationInput"
           placeholder="Enter letters, numbers or emojis"
         />
-        <p class="js-result"></p>
-        <p class="js-score"></p>
+        <div class="js-result"></div>
+        <div class="js-score"></div>
 
         <button
           class="js-reset"
           onclick="
-          score.player = 0;
-          score.computer = 0;
-          localStorage.setItem('score', JSON.stringify(score));
-          document.querySelector('.js-score').innerHTML = `Score: Player ${score.player}; Computer ${score.computer}`;
+            score.player = 0;
+            score.computer = 0;
+            localStorage.setItem('score', JSON.stringify(score));
+            document.querySelector('.js-score').innerHTML = `Score: Player ${score.player}; Computer ${score.computer}`;
           "
         >
           Reset score
+        </button>
+        <button
+          class="js-auto-play"
+          onclick="
+          if (document.querySelector('.js-auto-play').innerHTML.trim() === 'Auto play') {
+            isAutoPlaying = true;
+            autoPlay();
+            document.querySelector('.js-auto-play').innerHTML = 'STOP auto play';
+          } else {
+            isAutoPlaying = false;
+            clearInterval(autoPlayInterval);
+            document.querySelector('.js-auto-play').innerHTML = 'Auto play';
+          }
+          "
+        >
+          Auto play
         </button>
       </div>
 
